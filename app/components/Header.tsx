@@ -8,15 +8,15 @@ const Header: React.FC = () => {
       <div className="col-span-1 relative">
         <Image
           src="/singularity.png"
-          alt="Logo"
+          alt=""
           style={{ objectFit: "contain" }}
           layout="fill"
         />
       </div>
       <h1 className="col-span-1 mt-3 font-extrabold">Singularity</h1>
-      <span className="col-span-8"></span>
-      <Link className="col-span-2 mt-2" href={""}>
-        <div className="px-3 py-2 border-[1px] border-black rounded-full w-fit h-auto ml-auto font-bold text-sm">
+      <span className="col-span-7"></span>
+      <Link className="col-span-3 mt-2" href={""}>
+        <div className="px-3 py-2 border-[1px] border-primary-black rounded-full w-fit h-auto ml-auto font-bold text-sm">
           Career Planner
         </div>
       </Link>

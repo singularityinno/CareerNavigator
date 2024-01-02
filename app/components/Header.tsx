@@ -10,13 +10,14 @@ const Header: React.FC = () => {
           src="/singularity.png"
           alt=""
           style={{ objectFit: "contain" }}
-          layout="fill"
+          fill
+          sizes="100vw"
         />
       </div>
       <h1 className="col-span-1 mt-3 font-extrabold">Singularity</h1>
       <span className="col-span-7"></span>
-      <Link className="col-span-3 mt-2" href={""}>
-        <div className="px-3 py-2 border-[1px] border-primary-black rounded-full w-fit h-auto ml-auto font-bold text-sm">
+      <Link className="col-span-3 mt-2" href={"/career-navigator"}>
+        <div className="px-3 py-2 border-[1px] border-primary-black rounded-full w-fit h-auto ml-auto font-bold text-sm hover:shadow-lg transition-all">
           Career Planner
         </div>
       </Link>

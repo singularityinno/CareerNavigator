@@ -20,15 +20,15 @@ const PathwayCard: React.FC<PathwayCardProps> = ({
   return (
     <div
       style={{ background: color }}
-      className={`relative text-white rounded-lg h-auto p-10 text-3xl ${selectedStyle} hover:drop-shadow-md transition-all duration-200`}
+      className={`relative text-white rounded-lg h-auto p-10 text-4xl ${selectedStyle} hover:drop-shadow-md transition-all duration-200`}
       onClick={handleClick}
     >
-      <div className="text-7xl p-2">{Icon}</div>
-      <div className="absolute top-5 left-5 text-9xl">
-        <PiCircleDashedThin />
+      <div className="text-8xl p-6 border-white border-2 border-dashed rounded-full w-fit">
+        {Icon}
       </div>
       <h2 className="font-extrabold mt-16">
-        {name} / <br />
+        {name} {name == "Student" && "/"}
+        <br />
         {name == "Student" ? "New Grad" : "Advancement"}
       </h2>
       <h3 className="font-semibold">Pathway</h3>

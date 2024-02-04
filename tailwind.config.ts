@@ -18,6 +18,7 @@ const config: Config = {
         "primary-pink": "#FF0563",
         "primary-black": "#1C2A36",
         "primary-yellow": "#FFBF00",
+        "primary-gray": "#8E959B",
       },
     },
   },

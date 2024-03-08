@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Open_Sans } from "next/font/google";
 import "./globals.css";
-import BackgroundGradient from "./components/BackgroundGradient";
 
 const open_Sans = Open_Sans({
   subsets: ["latin"],
@@ -20,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${open_Sans.className} bg-white text-primary-black overflow-x-hidden relative`}>
+      <body className={`${open_Sans.className} overflow-x-hidden relative bg-black text-white`}>
         {children}
       </body>
     </html>

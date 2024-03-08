@@ -1,12 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Layout from "../layout";
-import Header from "../components/Header";
-import PathwayCard from "./components/PathwayCard";
-import { LuGraduationCap } from "react-icons/lu";
-import Survey from "./components/Survey";
 import { createContext, useState } from "react";
 import { SurveyWrapper } from "../contexts/SurveyContext";
+import Header from "./components/Header";
+import { AiFillSignal } from "react-icons/ai";
 
 export const metadata: Metadata = {
   title: "Career Navigator",
@@ -16,58 +14,63 @@ export const metadata: Metadata = {
 export default function CareerNavigator() {
   return (
     <Layout>
-      <div className="absolute w-full h-[100%] min-h-screen -z-20 ">
-        <Image
-          src="/blurs.png"
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "top" }}
-          alt=""
-        />
-      </div>
       <Header />
-      <div className="relative mt-[30vh] mb-[40vh] mx-28 grid grid-cols-4 gap-10">
-        <div className="col-span-1 relative">
-          <Image
-            src="/rocket.png"
-            width={200}
-            height={200}
-            style={{
-              borderRadius: "100px",
-              marginLeft: "auto",
-            }}
-            alt=""
-          />
-        </div>
-        <div className="col-span-3 mt-5">
-          <h1 className="text-4xl font-bold">
-            Unleash Your Potential with an
-            <br />
-            AI-Powered{" "}
-            <span className="text-primary-purple">CareerPath Navigator</span>
-          </h1>
-          <div className="relative w-auto h-auto">
-            <div className="absolute w-[600px] h-full scale-y-[250%] scale-x-100 -z-10 mr-auto -ml-20 max-w-full">
-              <Image
-                src="/softPurpleBlur.png"
-                style={{ objectFit: "fill" }}
-                fill
-                alt=""
-              />
-            </div>
-            <h2 className="text-md mt-5">
-              Interactive Coaching Platform that
-              <br />
-              <span className="font-bold">
-                Revolutionizes Your Professional Growth.
-              </span>
-            </h2>
-          </div>
-        </div>
+      <div>
+        <Block1 />
+        <h1 className="text-5xl font-extrabold text-center">
+          Unleash Your Potential
+        </h1>
+        <h2 className="text-2xl font-bold italic text-center mt-3">
+          with an AI-Powered
+          <span className="text-pink">CareerPath Navigator</span>
+        </h2>
       </div>
-      <SurveyWrapper>
-        <Survey />
-      </SurveyWrapper>
     </Layout>
   );
 }
+
+type BlockProps = {
+  children: React.ReactNode;
+};
+
+const Block: React.FC<BlockProps> = ({ children }) => {
+  return (
+    <div className="bg-black-secondary border-[1px] border-grey rounded-2xl w-fit h-fit p-4">
+      {children}
+    </div>
+  );
+};
+
+const Block1: React.FC = () => {
+  return (
+    <Block>
+      <div className="flex gap-3">
+        <div className="bg-pink rounded-full p-1">
+          <AiFillSignal className="text-black" />
+        </div>
+        <div className="text-sm font-bold">Sharpen Your Skills</div>
+      </div>
+      <div className="flex text-xs font-bold mt-2">
+        <div>Frontend</div>
+        <div className="ml-auto bg-pink px-2 rounded-full text-black">
+          React
+        </div>
+      </div>
+      <div className="flex text-xs font-bold mt-2">
+        <div>Backend</div>
+        <div className="ml-auto bg-yellow px-2 rounded-full text-black">
+          Node
+        </div>
+        <div className="ml-auto bg-pink px-2 rounded-full text-black">
+          Express
+        </div>
+      </div>
+      <div className="flex text-xs font-bold mt-2">
+        <div>Frontend</div>
+        <div className="ml-auto bg-pink px-2 rounded-full text-black">
+          React
+        </div>
+      </div>
+    </Block>
+  );
+};

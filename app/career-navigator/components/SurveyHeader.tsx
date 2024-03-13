@@ -1,52 +1,46 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { FaGraduationCap, FaCheck } from "react-icons/fa";
-import { useSurveyContext } from "@/career-navigator/contexts";
+import { Pathway, useSurveyContext } from "@/career-navigator/contexts";
+import { TbTie } from "react-icons/tb";
+import { getSurveyStages } from "@/career-navigator/contexts/SurveyContext";
 
 const SurveyHeader = () => {
-    const { currStage = 0 } = useSurveyContext();
-return (
-  <div className="flex gap-[15%] justify-center">
-    <Dot text="Pathway" state={currStage === 0 ? "active" : "completed"}>
-      <FaGraduationCap />
-    </Dot>
-    <Dot
-      text="Q1-3"
-      state={
-        currStage === 1 ? "active" : currStage < 1 ? "upcoming" : "completed"
-      }
-    >
-      <FaCheck />
-    </Dot>
-    <Dot
-      text="Q4-6"
-      state={
-        currStage === 2 ? "active" : currStage < 2 ? "upcoming" : "completed"
-      }
-    >
-      <FaCheck />
-    </Dot>
-    <Dot
-      text="Q7-9"
-      state={
-        currStage === 3 ? "active" : currStage < 3 ? "upcoming" : "completed"
-      }
-    >
-      <FaCheck />
-    </Dot>
-    <Dot
-      text="Results"
-      state={
-        currStage === 4 ? "active" : currStage < 4 ? "upcoming" : "completed"
-      }
-    >
-      <FaCheck />
-    </Dot>
-  </div>
-);
+  const { pathway, currStage } = useSurveyContext();
+  const stages = getSurveyStages(pathway);
+  const stageWidth = (currStage / (stages.length - 1)) * 800;
+  return (
+    <div className="relative w-[850px] mx-auto">
+      <hr
+        className={`border-t-2 border-pink absolute top-4 -z-10 transition-all duration-200`}
+        style={{ width: `${stageWidth}px`, left: "20px" }}
+      />
+      <hr
+        className={`border-t-2 border-dashed border-grey absolute top-4 -z-20 w-[800px] left-8`}
+      />
+      <div className="flex justify-between">
+        {stages.map((stage, index) => (
+          <div key={stage.name}>
+            <Dot
+              text={stage.name}
+              state={
+                currStage === index
+                  ? "active"
+                  : currStage < index
+                  ? "upcoming"
+                  : "completed"
+              }
+            >
+              {stage.icon}
+            </Dot>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 type DotProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   text: string;
   state: "active" | "completed" | "upcoming";
 };
@@ -67,11 +61,13 @@ const Dot: React.FC<DotProps> = ({ children, text, state }) => {
   return (
     <div className="text-center">
       <div
-        className={`mx-auto mb-2 w-8 h-8 border-2 rounded-full text-lg text-center flex items-center justify-center ${style}`}
+        className={`mx-auto mb-2 w-8 h-8 border-2 rounded-full text-lg text-center flex items-center justify-center transition-all duration-100 ${style}`}
       >
         {state === "completed" && children}
       </div>
-      <div className={`text-md ${textStyle}`}>{text}</div>
+      <div className={`text-md transition-all duration-200 ${textStyle}`}>
+        {text}
+      </div>
     </div>
   );
 };

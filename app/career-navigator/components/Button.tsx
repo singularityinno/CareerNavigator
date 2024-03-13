@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       <button
         className={`
-            bg-${color} text-white p-5 text-lg rounded-full 
+            bg-${color} text-white p-4 text-lg rounded-full 
             hover:-rotate-45
             transition-all duration-100`}
         disabled={disabled}

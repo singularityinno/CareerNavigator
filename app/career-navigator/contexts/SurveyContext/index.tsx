@@ -1,9 +1,15 @@
+import PathwayStage from "@/career-navigator/survey/stages/PathwayStage";
+import QuestionStage from "@/career-navigator/survey/stages/QuestionStage";
+import ResultsStage from "@/career-navigator/survey/stages/ResultsStage";
 import React, { createContext, useContext, useState } from "react";
+import { FaCheck, FaGraduationCap } from "react-icons/fa";
+import { TbTie } from "react-icons/tb";
 
-export type responsesType = {
+export type responseSetType = responseType[];
+export type responseType = {
   id: number;
-  question?: string;
-  answer?: string;
+  question: string;
+  response: string;
 };
 
 export enum Pathway {
@@ -11,36 +17,53 @@ export enum Pathway {
   PROFESSIONAL = "professional",
 }
 
+export const getSurveyStages = (
+  pathway: Pathway = Pathway.STUDENT
+): {
+  name: string;
+  icon: React.ReactNode;
+  component: React.ReactNode;
+}[] => [
+  {
+    name: "Pathway",
+    icon: pathway === Pathway.STUDENT ? <FaGraduationCap /> : <TbTie />,
+    component: <PathwayStage />,
+  },
+  { name: "Q1-3", icon: <FaCheck />, component: <QuestionStage /> },
+  { name: "Q4-6", icon: <FaCheck />, component: <QuestionStage /> },
+  { name: "Q7-9", icon: <FaCheck />, component: <QuestionStage /> },
+  { name: "Results", icon: <FaCheck />, component: <ResultsStage /> },
+];
+
 const sampleReponses = [
-  {
-    id: 1,
-    question: "What is your name?",
-    answer: "John Doe",
-  },
-  {
-    id: 2,
-    question: "What is your age?",
-    answer: "21",
-  },
-  {
-    id: 3,
-    question: "What is your favorite color?",
-    answer: "Blue",
-  },
+  [
+    {
+      id: 1,
+      question: "What is your name?",
+    },
+    {
+      id: 2,
+      question: "What is your age?",
+    },
+    {
+      id: 3,
+      question: "What is your favorite color?",
+    },
+  ],
 ];
 
 type SurveyContextType = {
   pathway?: Pathway;
-  setPathway?: (pathway: Pathway) => void;
-  responses?: responsesType[];
-  setResponses?: (responses: responsesType[]) => void;
-  currStage?: number;
-  setCurrStage?: (stage: number) => void;
+  setPathway: (pathway: Pathway) => void;
+  responses?: responseSetType[];
+  setResponses: (responses: responseSetType[]) => void;
+  currStage: number;
+  setCurrStage: (stage: number) => void;
 };
 
 const SurveyContext = createContext<SurveyContextType>({
   pathway: Pathway.STUDENT,
-  setPathway: () => {},
+  setPathway: () => { },
   responses: [],
   setResponses: () => { },
   currStage: 0,
@@ -51,7 +74,7 @@ export const SurveyWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [pathway, setPathway] = useState<Pathway>(Pathway.STUDENT);
-  const [responses, setResponses] = useState<responsesType[]>(sampleReponses);
+  const [responses, setResponses] = useState<responseSetType[]>(sampleReponses);
   const [currStage, setCurrStage] = useState<number>(0);
 
   return (

@@ -1,30 +1,27 @@
 import React from "react";
-import { useSurveyContext } from "@/career-navigator/contexts";
-import PathwayStage from "./stages/PathwayStage";
-import QuestionStage from "./stages/QuestionStage";
-import ResultsStage from "./stages/ResultsStage";
+import { getSurveyStages, useSurveyContext } from "@/career-navigator/contexts";
 import SurveyHeader from "../components/SurveyHeader";
+import ButtonSecondary from "../components/ButtonSecondary";
+import { Route } from "@/constants/routes";
+import Link from "next/link";
 
 const Survey = () => {
   const { currStage } = useSurveyContext();
 
   const renderStage = () => {
-    switch (currStage) {
-      case 0:
-        return <PathwayStage />;
-      case 1:
-      case 2:
-      case 3:
-        return <QuestionStage />;
-      case 4:
-        return <ResultsStage />;
-    }
+    return getSurveyStages()[currStage].component;
   };
 
   return (
     <div>
       <SurveyHeader />
       {renderStage()}
+      <Link
+        href={Route.CAREER_NAVIGATOR}
+        className="fixed left-4 bottom-4"
+      >
+        <ButtonSecondary color="grey">Exit</ButtonSecondary>
+      </Link>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-"use client";
 import React, { createContext, useContext, useState } from "react";
 
 export type responsesType = {
@@ -35,13 +34,17 @@ type SurveyContextType = {
   setPathway?: (pathway: Pathway) => void;
   responses?: responsesType[];
   setResponses?: (responses: responsesType[]) => void;
+  currStage?: number;
+  setCurrStage?: (stage: number) => void;
 };
 
 const SurveyContext = createContext<SurveyContextType>({
   pathway: Pathway.STUDENT,
   setPathway: () => {},
   responses: [],
-  setResponses: () => {},
+  setResponses: () => { },
+  currStage: 0,
+  setCurrStage: () => {},
 });
 
 export const SurveyWrapper: React.FC<{ children: React.ReactNode }> = ({
@@ -49,14 +52,22 @@ export const SurveyWrapper: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [pathway, setPathway] = useState<Pathway>(Pathway.STUDENT);
   const [responses, setResponses] = useState<responsesType[]>(sampleReponses);
+  const [currStage, setCurrStage] = useState<number>(0);
 
   return (
-    <SurveyContext.Provider value={{pathway, setPathway, responses, setResponses}}>
+    <SurveyContext.Provider
+      value={{
+        pathway,
+        setPathway,
+        responses,
+        setResponses,
+        currStage,
+        setCurrStage,
+      }}
+    >
       {children}
     </SurveyContext.Provider>
   );
 };
 
-export function useSurveyContext() {
-  return useContext(SurveyContext);
-}
+export const useSurveyContext = () => useContext(SurveyContext);

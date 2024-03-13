@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Layout from "../layout";
-import { createContext, useState } from "react";
-import { SurveyWrapper } from "../contexts/SurveyContext";
-import Header from "./components/Header";
 import { AiFillSignal, AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
 import { RiCopperCoinLine } from "react-icons/ri";
 import { FaArrowRight, FaGithub } from "react-icons/fa";
 import { Headshot1, Headshot2, Headshot3, Headshot4 } from "./assets";
 import Button from "./components/Button";
+import Link from "next/link";
+import { Route } from "@/constants/routes";
 
 export const metadata: Metadata = {
   title: "Career Navigator",
@@ -17,8 +15,7 @@ export const metadata: Metadata = {
 
 export default function CareerNavigator() {
   return (
-    <Layout>
-      <Header />
+    <>
       <div>
         <Block1 />
         <Block2 />
@@ -32,13 +29,15 @@ export default function CareerNavigator() {
             <span className="text-pink">CareerPath Navigator</span>
           </h2>
           <div className="flex justify-end mt-4">
-            <Button color="pink" className="mr-80">
-              <FaArrowRight />
-            </Button>
+            <Link href={Route.SURVEY}>
+              <Button color="pink" className="mr-80">
+                <FaArrowRight />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 
@@ -227,12 +226,14 @@ const Block5: React.FC = () => {
           >
             <AiFillInstagram />
           </div>
-          <div className="bg-blue w-10 h-10 rounded-full text-2xl p-2
+          <div
+            className="bg-blue w-10 h-10 rounded-full text-2xl p-2
             hover:bg-blue/80 transition-all duration-100"
           >
             <AiFillLinkedin />
           </div>
-          <div className="bg-orange w-10 h-10 rounded-full text-2xl p-2
+          <div
+            className="bg-orange w-10 h-10 rounded-full text-2xl p-2
             hover:bg-orange/80 transition-all duration-100"
           >
             <FaGithub />

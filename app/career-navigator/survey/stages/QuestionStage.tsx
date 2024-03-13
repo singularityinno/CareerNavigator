@@ -20,11 +20,22 @@ const QuestionStage = () => {
       ]);
     }
   };
+  const [showError, setShowError] = React.useState(false);
+
+  const nextStep = () => {
+    for (const response of currResponse ?? []) {
+      if (!response.response || response.response.trim() === "") {
+        setShowError(true);
+        return;
+      }
+    }
+    setCurrStage(currStage + 1);
+  };
 
   return (
     <div className="mx-10 mt-10">
       <h1 className="text-2xl font-bold">
-        Questions {(currStage - 1) * 3 + 1} - {(currStage - 1) * 3 + 3}
+        Questions {(currStage - 1) * 3 + 1}-{(currStage - 1) * 3 + 3}
       </h1>
       <p className="text-grey mt-4 text-sm">
         Answer the following questions to get started!
@@ -38,11 +49,12 @@ const QuestionStage = () => {
               setResponse={(response) => {
                 setResponse(index, response);
               }}
+              showError={showError}
               key={index}
             />
           ))}
       </div>
-      <div onClick={() => setCurrStage(currStage + 1)} className="mt-4 mb-8 flex justify-end">
+      <div onClick={() => nextStep()} className="mt-4 mb-8 flex justify-end">
         <Button color="pink">
           <FaArrowRight />
         </Button>
@@ -54,12 +66,14 @@ const QuestionStage = () => {
 interface QuestionProps {
   question: string;
   response: string;
+  showError: boolean;
   setResponse: (response: string) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({
   question,
   response,
+  showError,
   setResponse,
 }) => {
   const [textareaHeight, setTextareaHeight] = React.useState("auto");
@@ -86,9 +100,16 @@ const Question: React.FC<QuestionProps> = ({
     changeHeight();
   }, []);
 
+  const error = showError && response.trim() === "";
+
   return (
-    <div className="bg-black-secondary p-5 border-white/20 border-[1px] rounded-3xl">
-      <p className="font-bold text-md">{question}</p>
+    <div className="bg-black-secondary p-5 border-white/20 border-[1px] rounded-3xl hover:brightness-125 transition-all duration-100">
+      <p className="font-bold text-md">
+        {question}{" "}
+        <span className={`${error ? "text-teal" : "text-grey"} font-normal`}>
+          * {error && " Required"}
+        </span>
+      </p>
       <hr className="border-t-4 border-teal my-3 w-32" />
       <textarea
         ref={textareaRef}

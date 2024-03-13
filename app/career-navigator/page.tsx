@@ -25,7 +25,7 @@ export default function CareerNavigator() {
         <Block3 />
         <Block4 />
         <Block5 />
-        <div className="mt-60 text-center">
+        <div className="mt-72 text-center">
           <h1 className="text-5xl font-extrabold">Unleash Your Potential</h1>
           <h2 className="text-2xl font-bold italic mt-3">
             with an AI-Powered{" "}
@@ -50,7 +50,7 @@ const Block: React.FC<BlockProps> = ({ children }) => {
   return (
     <div
       className="
-        bg-black-secondary border-[1px] border-white/20
+        bg-black-secondary border-[1px] border-white/20 cursor-default
         rounded-3xl w-fit h-fit p-4 hover:bg-black-secondary/80 transition-all duration-100"
     >
       {children}
@@ -60,7 +60,7 @@ const Block: React.FC<BlockProps> = ({ children }) => {
 
 const Block1: React.FC = () => {
   return (
-    <div className="absolute left-20 top-36">
+    <div className="absolute left-[10%] top-48">
       <Block>
         <div className="flex gap-3">
           <div className="bg-pink rounded-full p-1">
@@ -79,13 +79,13 @@ const Block1: React.FC = () => {
           <div className="ml-auto bg-yellow px-2 rounded-full text-black">
             Node
           </div>
-          <div className="ml-auto bg-pink px-2 rounded-full text-black">
+          <div className="ml-auto bg-blue px-2 rounded-full text-black">
             Express
           </div>
         </div>
         <div className="flex text-xs font-bold mt-2">
           <div>Frontend</div>
-          <div className="ml-auto bg-pink px-2 rounded-full text-black">
+          <div className="ml-auto bg-teal px-2 rounded-full text-black">
             React
           </div>
         </div>
@@ -96,7 +96,7 @@ const Block1: React.FC = () => {
 
 const Block2: React.FC = () => {
   return (
-    <div className="absolute left-[35%] top-20">
+    <div className="absolute left-[35%] top-28">
       <Block>
         <div className="text-sm font-bold text-center">Build Your Network</div>
         <div className="flex mt-2">
@@ -127,7 +127,7 @@ const Block2: React.FC = () => {
 
 const Block3: React.FC = () => {
   return (
-    <div className="absolute right-20 top-36">
+    <div className="absolute left-[57%] top-44">
       <Block>
         <div className="text-sm font-bold">Gain Real-World Experience</div>
         <hr className="border-1 border-white/20 mt-2" />
@@ -159,7 +159,7 @@ const Block3: React.FC = () => {
 
 const Block4: React.FC = () => {
   return (
-    <div className="absolute top-[550px] right-60">
+    <div className="absolute top-[570px] left-[50%]">
       <Block>
         <div className="text-sm font-bold">Strategize Your Career Path</div>
         <div className="grid grid-cols-6 w-96 h-24 gap-2 p-3 absolute left-1">
@@ -206,26 +206,37 @@ const Block4: React.FC = () => {
 
 const Block5: React.FC = () => {
   return (
-    <div className="absolute top-[480px] left-96 text-center">
-      <Block>
-        <div className="text-sm font-bold">Cultivate Your Personal Brand</div>
-      </Block>
-      <div className="m-auto border-l-2 border-dashed border-grey h-5 w-0"></div>
-      <div className="m-auto border-t-2 border-dashed border-grey h-0 w-40"></div>
-      <div className="flex w-40 m-auto">
-        <div className="border-l-2 border-dashed border-grey h-5 w-20"></div>
-        <div className="border-l-2 border-dashed border-grey h-5 w-0"></div>
-        <div className="border-r-2 border-dashed border-grey h-5 w-20"></div>
-      </div>
-      <div className="flex w-[198px] m-auto text-center justify-between">
-        <div className="bg-pink w-10 h-10 rounded-full text-2xl p-2">
-          <AiFillInstagram />
+    <div className="absolute top-[510px] left-[15%] text-center flex">
+      <div className="w-3 h-3 rounded-full bg-yellow mt-5"></div>
+      <div className="border-t-2 border-dashed border-grey h-0 w-20 mt-6"></div>
+      <div>
+        <Block>
+          <div className="text-sm font-bold">Cultivate Your Personal Brand</div>
+        </Block>
+        <div className="m-auto border-l-2 border-dashed border-grey h-5 w-0"></div>
+        <div className="m-auto border-t-2 border-dashed border-grey h-0 w-40"></div>
+        <div className="flex w-40 m-auto">
+          <div className="border-l-2 border-dashed border-grey h-5 w-20"></div>
+          <div className="border-l-2 border-dashed border-grey h-5 w-0"></div>
+          <div className="border-r-2 border-dashed border-grey h-5 w-20"></div>
         </div>
-        <div className="bg-blue w-10 h-10 rounded-full text-2xl p-2">
-          <AiFillLinkedin />
-        </div>
-        <div className="bg-orange w-10 h-10 rounded-full text-2xl p-2">
-          <FaGithub />
+        <div className="flex w-[198px] m-auto text-center justify-between">
+          <div
+            className="bg-pink w-10 h-10 rounded-full text-2xl p-2 
+            hover:bg-pink/80 transition-all duration-100"
+          >
+            <AiFillInstagram />
+          </div>
+          <div className="bg-blue w-10 h-10 rounded-full text-2xl p-2
+            hover:bg-blue/80 transition-all duration-100"
+          >
+            <AiFillLinkedin />
+          </div>
+          <div className="bg-orange w-10 h-10 rounded-full text-2xl p-2
+            hover:bg-orange/80 transition-all duration-100"
+          >
+            <FaGithub />
+          </div>
         </div>
       </div>
     </div>

@@ -35,19 +35,22 @@ export const getSurveyStages = (
   { name: "Results", icon: <FaCheck />, component: <ResultsStage /> },
 ];
 
-const sampleReponses = [
+const sampleReponses: responseSetType[] = [
   [
     {
       id: 1,
       question: "What is your name?",
+      response: "",
     },
     {
       id: 2,
       question: "What is your age?",
+      response: "",
     },
     {
       id: 3,
       question: "What is your favorite color?",
+      response: "",
     },
   ],
 ];
